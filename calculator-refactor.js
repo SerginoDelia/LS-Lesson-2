@@ -1,8 +1,10 @@
 /******************** Refactor Calculator ************************/
+const readline = require('readline-sync');
+const message = require('./calculator_messages.json');
 
 let prompt = (message) => console.log(`=> ${message}`);
 
-// get number from user
+// function to get get number from user
 let getNumber = (question) => {
   prompt(question);
   let number = readline.question();
@@ -42,8 +44,9 @@ let useCalculator = 'yes';
 while (useCalculator.toLowerCase() === 'yes') {
   prompt(message.welcome);
   // Get 2 numbers from user
-  let number1 = getNumber(message.firstNumber);
-  let number2 = getNumber(message.secondNumber);
+  // let number1 = getNumber(message.firstNumber);
+  // let number2 = getNumber(message.secondNumber);
+  let [number1, number2] = [getNumber(message.firstNumber), getNumber(message.secondNumber)];
 
   // Get orperation from user
   let operation = getOperation();
@@ -51,7 +54,7 @@ while (useCalculator.toLowerCase() === 'yes') {
   // Perform Operation
   let calculate = (num1, num2, howToCalculate) => howToCalculate(num1, num2);
 
-  // return result
+  // display result
   console.log(calculate(number1, number2, operation));
 
   // ask user if user would like to calculate again
