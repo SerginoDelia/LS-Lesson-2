@@ -48,11 +48,11 @@ const calculateAgain = (question) => {
   } else {
     return false;
   }
-};
+}
 
-let useCalculator = true;
+let useCalculatorAgain = true;
 
-while (useCalculator) {
+while (useCalculatorAgain) {
   // The loan amount: loanAmount
   let loanAmount = getInputFromUser(message.loanAmount);
   console.log(typeof loanAmount);
@@ -74,5 +74,5 @@ while (useCalculator) {
 
   prompt(`Your monthly payment is: $${monthlyPayment.toFixed(2)}\n\n`);
 
-  useCalculator = calculateAgain(message.calculateAgain);
+  useCalculatorAgain = calculateAgain(message.calculateAgain);
 }

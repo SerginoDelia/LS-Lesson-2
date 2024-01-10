@@ -153,10 +153,10 @@ console.log(merge([1, 2, 3], [4, 5, 6])); // => [1, 4, 2, 5, 3, 6]
 
 /**
  * START
- * 
+ *
  * SET largestNumbers = []
  * SET keepGoing = true
- * 
+ *
  * WHILE keepGoing === true
  *  GET "enter a collection"
  *  SET collection
@@ -167,8 +167,25 @@ console.log(merge([1, 2, 3], [4, 5, 6])); // => [1, 4, 2, 5, 3, 6]
  *    keepGoing = true
  *  ELSE
  *    keepGoing = false
- * 
+ *
  * PRINT largestNumbers
- * 
+ *
  * END
  */
+
+// Start with high level, using declarative syntax, for example if you're working on a calculator, you can start with something like this
+
+/**
+ * - Get the first number
+ *  - Make sure it's valid, otherwise, ask for another number
+ * - Get the second number
+ *  - Make sure it's valid, otherwise ask for another
+ * - Get the operator
+ *  - Make sure it's valid, otherwise, ask again
+ * 
+ * - Perform the operation on the two numbers
+ * - Display result
+ * - Ask whether the user wants to do another calculation
+ */
+
+
