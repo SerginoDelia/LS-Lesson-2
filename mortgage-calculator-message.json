@@ -1,0 +1,7 @@
+{
+  "loanAmount": "What is the loanAmount?",
+  "loanTerm": "What is the loan term in months?",
+  "interestRate": "What is the Interest Rate(APR)",
+  "invalidNumber": "Hmm... that doesn't look like a valid number.",
+  "calculateAgain": "Would you like to use the calculator again?\nType: (Yes) to continue.(No) to exit"
+}
