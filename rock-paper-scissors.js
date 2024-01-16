@@ -5,9 +5,8 @@
 // If both players choose the same item, neither player wins. It's a tie.
 
 /** Bonus Feature Rules
- * 1. Lizard Spock This game is a variation on the Rock Paper Scissors game that 
+ * 1. Lizard Spock This game is a variation on the Rock Paper Scissors game that
  * adds two more options - Lizard and Spock:
- * 
  * Lizard, Spock
  * scissors cut paper
  * scissors dicapitates lizards
@@ -19,12 +18,10 @@
  * lizards eats paper
  * spock smashes scissors
  * spock vaporizes rock
- * 
- * Shortened Input: Update the program so the user can type "r" for rock, 
+ * Shortened Input: Update the program so the user can type "r" for rock,
  * "p" for papaer, "s" for scissors, "l" for lizard, "sp" for spock
  * */
-
-// Our version of the game lets the user play against the computer. The game 
+// Our version of the game lets the user play against the computer. The game
 // flow should go like this:
 
 // The user makes a choice.
@@ -35,6 +32,8 @@
 // require the readline-sync library so we can get user input.
 const readline = require('readline-sync');
 const VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+let playerWinsCount = 0;
+let computerWinsCount = 0;
 
 const SHORT_CHOICES = VALID_CHOICES.map(letter => {
   return (letter === 'spock') ? 'sp' : letter[0];
@@ -47,17 +46,14 @@ function prompt(message) {
 function displayChoices(choices, shortChoices) {
   let shortAndLongChoices = [];
 
-  for (let i = 0; i < choices.length; i += 1) {
-    shortAndLongChoices.push(`(${shortChoices[i]})${choices[i]}`)
+  for (let index = 0; index < choices.length; index += 1) {
+    shortAndLongChoices.push(`(${shortChoices[index]})${choices[index]}`);
   }
   return shortAndLongChoices.join(', ');
 }
 
-function displayWinner(choice, computerChoice) {
-
-  prompt(`You chose ${choice}, computer chose ${computerChoice}`);
-
-  if (((choice === 'rock' || choice === 'r') &&
+function playerWins(choice, computerChoice) {
+  return (((choice === 'rock' || choice === 'r') &&
     computerChoice === ('scissors' || 'lizard')) ||
     ((choice === 'paper' || choice === 'p') &&
       computerChoice === ('rock' || 'spock')) ||
@@ -66,28 +62,53 @@ function displayWinner(choice, computerChoice) {
     ((choice === 'lizard' || choice === 'l') &&
       computerChoice === ('paper' || 'spock')) ||
     ((choice === 'spock' || choice === 'sp') &&
-      computerChoice === ('scissors' || 'rock'))) {
+      computerChoice === ('scissors' || 'rock')));
+}
+
+function displayWinner(choice, computerChoice) {
+  prompt(`You chose ${choice}, computer chose ${computerChoice}`);
+
+  if (playerWins(choice, computerChoice)) {
     prompt('You win!');
+    playerWinsCount = incrementCounter(playerWinsCount);
   } else if (choice === computerChoice) {
     prompt("It's a tie");
   } else {
     prompt('Computer wins');
+    computerWinsCount = incrementCounter(computerWinsCount);
   }
 }
 
-function prompt(message) {
-  console.log(`==> ${message}`);
-}
-
+// validates user choices for short and long inputs
 function validateChoice(userChoice) {
   if (VALID_CHOICES.includes(userChoice)) {
     return true;
   } else if (SHORT_CHOICES.includes(userChoice)) {
     return true;
   }
+  return userChoice;
 }
 
-while (true) {
+function incrementCounter(count) {
+  count += 1;
+  return count;
+}
+
+function displayGrandWinner(playerScore, computerScore) {
+  if (playerScore === 3) {
+    prompt("You're the grand winner!!!");
+    return true;
+  } else if (computerScore === 3) {
+    prompt("computer is the grand winner!!!");
+    return true;
+  } else {
+    return false;
+  }
+}
+
+while (!displayGrandWinner(playerWinsCount, computerWinsCount)) {
+  prompt(`Player Score: ${playerWinsCount}`);
+  prompt(`Computer Score: ${computerWinsCount}`);
   prompt('Welcome to Rock, Paper, Scissors, Lizard, Spock');
   // Ask the user to choose rock, paper, or scissors
   prompt(displayChoices(VALID_CHOICES, SHORT_CHOICES));
