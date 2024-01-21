@@ -88,8 +88,3 @@ double(newNum);
 // arr values: 1, 2, 3, value of num (1), value of newNum (1), 2 inside function
 // body, invoking double passing newNum (1), double parameter (1), double
 // return value 1 * 2 = 2
-
-
-
-
-
